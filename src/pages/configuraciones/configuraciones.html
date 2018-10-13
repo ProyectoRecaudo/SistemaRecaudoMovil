@@ -1,0 +1,290 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            Sincronización de Información
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <h4 ion-text color="primary" class="borderTitle font-title" text-center><i class="fas fa-cloud-download-alt"></i> SINCRONIZACIÓN</h4>
+        </ion-item>
+    </ion-list>
+    <button ion-button block large color="color-primary" (click)="traerDatos()"><ion-icon class="fas fa-tasks fa-lg"></ion-icon>&nbsp; Sincronizar Todos Los Datos</button>
+    <br>
+    <button ion-button block large color="color-primary" (click)="enviarDatos()"><ion-icon class="fas fa-cloud-upload-alt fa-lg"></ion-icon>&nbsp; Enviar Información</button>
+    <br>
+    <button ion-button block large color="color-primary" (click)="listarDatosDB()"><ion-icon class="fas fa-clipboard-list fa-lg"></ion-icon>&nbsp; Listar Datos Importados</button>
+    <br>
+    <button ion-button block large color="warning" (click)="configurarImpresora()"><ion-icon class="fas fa-cogs fa-lg"></ion-icon>&nbsp; Configurar Impresora</button>
+    <br>
+    <button ion-button block large color="warning" (click)="backup()"><ion-icon class="fas fa-lock fa-lg"></ion-icon>&nbsp; Copia de Seguridad</button>
+    <br>
+    <button ion-button block large color="dager" (click)="restore()"><ion-icon class="fas fa-window-restore fa-lg"></ion-icon>&nbsp; Restaurar Información</button>
+    <br>
+    <button ion-button block large color="secondary" (click)="empezar()"><ion-icon class="fas fa-hand-holding-usd fa-lg"></ion-icon>&nbsp; Iniciar Recaudos </button>
+
+
+    <br>
+    <button ion-button full (click)="listarDatosCargador()">TEST</button>
+
+    <!-- <button ion-button full (click)="n()">token</button> -->
+    <!-- <button ion-button full (click)="getSectores()">Sectores</button>
+  <button ion-button full (click)="getUsuarios()">Usuarios</button>
+  <button ion-button full (click)="getPlazas()">Plazas</button>
+  <button ion-button full (click)="getTerceros()">Terceros</button> -->
+
+    <br>
+    <ion-list>
+        <h2>SECTORES</h2>
+        <ion-item *ngFor="let sector of sectores">
+            <h2>Id Sector: {{ sector.pkidsector }}</h2>
+            <p>Nombre Sector: {{ sector.nombresector }}</p>
+            <p>Plaza: {{ sector.fkidplaza }}</p>
+            <p>Tipo Sector: {{ sector.fkidtiposector }}</p>
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>USUARIOS</h2>
+        <ion-item *ngFor="let usuario of usuarios">
+            <h2>Id Usuario: {{ usuario.pkidusuario }}</h2>
+            <p>CC: : {{ usuario.identificacion }}</p>
+            <p>Nombre: {{ usuario.nombreusuario }}</p>
+            <p>Apellido: {{ usuario.apellido }}</p>
+            <p>Activo: {{ usuario.usuarioactivo }}</p>
+            <p>Contraseña: {{ usuario.contrasenia }}</p>
+            <p>Ruta Imagen: {{ usuario.rutaimagen }}</p>
+            <p>Número Recibo: {{ usuario.numerorecibo }}</p>
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>PLAZAS</h2>
+        <ion-item *ngFor="let plaza of plazas">
+            <h2>Id plaza: {{ plaza.pkidplaza }}</h2>
+            <p>Nombre plaza: : {{ plaza.nombreplaza }}</p>
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>TERCEROS</h2>
+        <ion-item *ngFor="let tercero of terceros">
+            <h2>Id tercero: {{ tercero.pkidtercero }}</h2>
+            <p>Nombre tercero : {{ tercero.nombretercero }}</p>
+            <p>Identificación: {{ tercero.identificaciontercero }}</p>
+            <p>Teléfono: {{ tercero.telefonotercero }}</p>
+            <p>Fec. creación: {{ tercero.creaciontercero }}</p>
+            <P>Mod. creación: {{ tercero.modificaciontercero }}</P>
+            <p>Tipo tercero: {{ tercero.tipotercero }}</p>
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>TARIFA PARQUEADERO</h2>
+        <ion-item *ngFor="let tp of tarifaparqueadero">
+            <h2>Id parqueadero: {{ tp.pkidtarifaparqueadero }}</h2>
+            <p>valor tarifa : {{ tp.valortarifaparqueadero }}</p>
+            <p>Descripción: {{ tp.descripciontarifaparqueadero }}</p>
+            <p>Resolución: {{ tp.numeroresoluciontarifaparqueadero }}</p>
+            <p>Documento: {{ tp.documentoresoluciontarifaparqueadero }}</p>
+            <P>Creación: {{ tp.craciontarifaparqueadero }}</P>
+            <p>Modificación: {{ tp.modificaciontarifaparqueadero }}</p>
+            <p>Tarifa activa: {{tp.tarifaparqueaderoactivo}} </p>
+            <p>Vlr. Increment: {{tp.valorincrementoporcentual}} </p>
+            <p>Tipo parqueadero: {{tp.fkidtipoparqueadero}} </p>
+            <p>Plaza: {{tp.fkidplaza}} </p>
+
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>FACTURAS</h2>
+        <ion-item *ngFor="let f of facturas">
+            <p> {{ f.pkidfactura }} </p>
+            <p> {{ f.numerofactura }} </p>
+            <p> {{ f.nombrebeneficiario }} </p>
+            <p> {{ f.identificacionbeneficiario }} </p>
+            <p> {{ f.deudatotal }} </p>
+            <p> {{ f.tarifapuesto }} </p>
+            <p> {{ f.numeroacuerdo }} </p>
+            <p> {{ f.valorcuotaacuerdo }} </p>
+            <p> {{ f.valormultas }} </p>
+            <p> {{ f.valorinteres }} </p>
+            <p> {{ f.mesfactura }} </p>
+            <p> {{ f.creacionfactura }} </p>
+            <p> {{ f.modificacionfactura }} </p>
+            <p> {{ f.fkidasignacionpuesto }} </p>
+            <p> {{ f.facturapagada }} </p>
+            <p> {{ f.saldoasignacion }} </p>
+            <p> {{ f.saldomultas }} </p>
+            <p> {{ f.mesfacturaletras }} </p>
+            <p> {{ f.year }} </p>
+            <p> {{ f.saldoacuerdo }} </p>
+            <p> {{ f.nombrepuesto }} </p>
+            <p> {{ f.fkidplaza }} </p>
+            <p> {{ f.fkidzona }} </p>
+            <p> {{ f.fkidsector }} </p>
+            <p> {{ f.nombreplaza }} </p>
+            <p> {{ f.nombrezona }} </p>
+            <p> {{ f.nombresector }} </p>
+            <p> {{ f.totalpagado }} </p>
+            <p> {{ f.mesfacturanumero }} </p>
+            <p> {{ f.fkidpuesto }} </p>
+            <p> {{ f.fkidacuerdo }} </p>
+            <p> {{ f.cuotasincumplidas }} </p>
+            <p> {{ f.cuotaspagadas }} </p>
+            <p> {{ f.totalapagarmes }} </p>
+            <p> {{ f.fechapagototal }} </p>
+            <p> {{ f.saldodeuda }} </p>
+            <p> {{ f.saldodeudaacuerdo }} </p>
+            <p> {{ f.saldoporpagar }} </p>
+            <p> {{ f.debermes }} </p>
+            <p> {{ f.deberyear }} </p>
+            <p> {{ f.facturaactivo }} </p>
+            <P> {{ f.abonototalacuerdo }}</P>
+            <P> {{ f.abonocuotaacuerdo }}</P>
+            <P> {{ f.abonodeudaacuerdo }}</P>
+            <P> {{ f.abonodeuda }}</P>
+            <P> {{ f.abonomultas }}</P>
+            <P> {{ f.abonocuotames }}</P>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>TARIFA PESAJE</h2>
+        <ion-item *ngFor="let tp of tarifapesaje">
+            <h2>ID: {{ tp.pkidsqlite }}</h2>
+            <p> {{ tp.pkidsqlite}} </p>
+            <p> {{ tp.pkidtarifapesaje}} </p>
+            <p> {{ tp.valortarifapesaje}} </p>
+            <p> {{ tp.numeroresoluciontarifapesaje}} </p>
+            <p> {{ tp.documentoresoluciontarifapesaje}} </p>
+            <p> {{ tp.creaciontarifapesaje}} </p>
+            <p> {{ tp.modificaciontarifapesaje}} </p>
+            <p> {{ tp.fkidplaza}} </p>
+            <p> {{ tp.tarifapesajeactivo}} </p>
+            <p> {{ tp.valorincrementoporcentual}} </p>
+            <p> {{ tp.descripciontarifapesaje}} </p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>TARIFA VEHICULO</h2>
+        <ion-item *ngFor="let tv of tarifavehiculos">
+            <h2>ID: {{ tv.pkidsqlite }}</h2>
+            <p>{{ tv.pkidtarifavehiculo }} </p>
+            <p>{{ tv.valortarifavehiculo }} </p>
+            <p>{{ tv.descripciontarifavehiculo }} </p>
+            <p>{{ tv.craciontarifavehiculo }} </p>
+            <p>{{ tv.modificaciontarifavehiculo }} </p>
+            <p>{{ tv.numeroresoluciontarifavehiculo }} </p>
+            <p>{{ tv.documentoresoluciontarifavehiculo }} </p>
+            <p>{{ tv.fkidtipovehiculo }} </p>
+            <p>{{ tv.fkidplaza }} </p>
+            <p>{{ tv.tarifavehiculoactivo }} </p>
+            <p>{{ tv.valorincrementoporcentual }} </p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>ZONAS</h2>
+        <ion-item *ngFor="let z of zonas">
+            <h2>ID: {{ z.pkidsqlite }}</h2>
+            <p> {{ z.pkidzona}}</p>
+            <p> {{ z.codigozona}}</p>
+            <p> {{ z.nombrezona}}</p>
+            <p> {{ z.zonaactivo}}</p>
+            <p> {{ z.creacionzona}}</p>
+            <p> {{ z.modificacionzona}}</p>
+            <p> {{ z.fkidplaza}}</p>
+            <p> {{ z.fkidusuario}}</p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>TIPO PUESTO</h2>
+        <ion-item *ngFor="let tpuesto of tipopuesto">
+            <h2>ID: {{ tpuesto.pkidsqlite }}</h2>
+            <p> {{ tpuesto.codigotipopuesto }} </p>
+            <p> {{ tpuesto.nombretipopuesto }} </p>
+            <p> {{ tpuesto.descripciontipopuesto }} </p>
+            <p> {{ tpuesto.tipopuestoactivo }} </p>
+            <p> {{ tpuesto.creaciontipopuesto }} </p>
+            <p> {{ tpuesto.modificaciontipopuesto }} </p>
+            <p> {{ tpuesto.pkidtipopuesto }} </p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>CATEGORIA ANIMAL</h2>
+        <ion-item *ngFor="let catanimal of categoriaanimal">
+            <h2>ID: {{ catanimal.pkidsqlite }}</h2>
+            <p> {{ catanimal.pkidcategoriaanimal }}</p>
+            <p> {{ catanimal.nombrecategoriaanimal }}</p>
+            <p> {{ catanimal.descripcioncategoriaanimal }}</p>
+            <p> {{ catanimal.creacioncategoriaanimal }}</p>
+            <p> {{ catanimal.modificacioncategoriaanimal }}</p>
+            <p> {{ catanimal.categoriaanimalactivo }}</p>
+            <p> {{ catanimal.codigocategoriaanimal }}</p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <ion-list>
+        <h2>ESPECIE ANIMAL</h2>
+        <ion-item *ngFor="let esp of especieanimal">
+            <h2>ID: {{ esp.pkidsqlite }}</h2>
+            <p> {{ esp.pkidespecieanimal }} </p>
+            <p> {{ esp.codigoespecieanimal }} </p>
+            <p> {{ esp.nombreespecieanimal }} </p>
+            <p> {{ esp.especieanimalactivo }} </p>
+            <p> {{ esp.creacionespecieanimal }} </p>
+            <p> {{ esp.modificacionespecieanimal }} </p>
+            <p> {{ esp.fkidtipoanimal }} </p>
+        </ion-item>
+        <hr>
+    </ion-list>
+
+    <h2>CARGA DE DATOS</h2>
+
+    <ion-list>
+        <h2>Recibos</h2>
+        <ion-item *ngFor="let r of recibos">
+            <h2>ID: {{ r.pkidsqlite }}</h2>
+            <p>pkidrecibopuestoeventual: {{ r.pkidrecibopuestoeventual }}</p>
+            <p>numerorecibopuestoeventual: {{ r.numerorecibopuestoeventual }}</p>
+            <p>valorecibopuestoeventual: {{ r.valorecibopuestoeventual }}</p>
+            <p>creacionrecibopuestoeventual: {{ r.creacionrecibopuestoeventual }}</p>
+            <p>modificacionrecibopuestoeventual: {{ r.modificacionrecibopuestoeventual }}</p>
+            <p>identificacionterceropuestoeventual: {{ r.identificacionterceropuestoeventual }}</p>
+            <p>fkidtarifapuestoeventual: {{ r.fkidtarifapuestoeventual }}</p>
+            <p>valortarifa: {{ r.valortarifa }}</p>
+            <p>nombreplaza: {{ r.nombreplaza }}</p>
+            <p>recibopuestoeventualactivo: {{ r.recibopuestoeventualactivo }}</p>
+            <p>nombresector: {{ r.nombresector }}</p>
+            <p>fkidsector: {{ r.fkidsector }}</p>
+            <p>sincronizado: {{ r.sincronizado }}</p>
+
+        </ion-item>
+        <hr>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,24 @@
+page-recaudo-puestos-eventuales {
+    .dividerTitle {
+        background: #FF5252;
+        color: white;
+    }
+    .item-input .label-md,
+    .item-select .label-md,
+    .item-datetime .label-md {
+        color: #000000;
+    }
+    .inputs {
+        padding-left: 0px;
+        padding-right: 0;
+    }
+    .select-md {
+        padding: 13px 0px 13px 0px;
+    }
+    ion-select {
+        max-width: 60%;
+    }
+    .item-md {
+        padding-left: 0px;
+    }
+}

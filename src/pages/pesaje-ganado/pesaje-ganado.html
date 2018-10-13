@@ -1,0 +1,171 @@
+<!--
+  Generated template for the PesajeGanadoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title> Pesaje de Ganado</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+            <h1 ion-text color="primary" class="borderTitle font-title" text-center><i class="fas fa-balance-scale"></i> PLAZAS DE FERIAS GANADO JONGOVITO</h1>
+        </ion-item>
+    </ion-list>
+
+    <div #Recibo>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item-divider class="dividerTitle">
+                        <ion-label>
+                            <h2 class="encabezado-recibo">
+                                <ion-icon name="md-filing"></ion-icon> BOLETA DE PESAJE No. 0001
+                            </h2>
+                        </ion-label>
+                    </ion-item-divider>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <ion-searchbar type="number" (ionBlur)="buscarTercero()" [(ngModel)]="tercero.identificaciontercero" placeholder="Buscar Identificacion"></ion-searchbar>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-6>
+                    <ion-label>
+                        <h2 class="font-red">Tarifa:</h2>
+                    </ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-label class="font-big-green" text-right> ${{format(tarifa)}} </ion-label>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-4>
+                    <ion-label class="f1" fixed>Usuario: </ion-label>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-input type="text" placeholder="Escriba el nombre del usuario" name="nombretercero" [(ngModel)]="tercero.nombretercero"></ion-input>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Sector: </ion-label>
+                            <ion-select [(ngModel)]="sector" name='sector' interface="action-sheet" placeholder="Seleccionar" cancelText="Cancelar">
+                                <ion-option *ngFor="let s of sectores" [value]="s">{{s.nombresector}} </ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Categoría Animal.: </ion-label>
+                            <ion-select [(ngModel)]="categoriaAnimal" name='categoriaAnimal' interface="action-sheet" placeholder="Seleccionar" cancelText="Cancelar">
+                                <ion-option value="Cerdos">Cerdos</ion-option>
+                                <ion-option value="Ganado">Ganado</ion-option>
+                                <ion-option value="Otros">Otros</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Tipo de Animal.: </ion-label>
+                            <ion-select [(ngModel)]="tipoAnimal" name='tipoAnimal' interface="action-sheet" placeholder="Seleccionar" cancelText="Cancelar">
+                                <ion-option value="Cerdos">Cerdos</ion-option>
+                                <ion-option value="Ganado">Ganado</ion-option>
+                                <ion-option value="Otros">Otros</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Especie Animales.: </ion-label>
+                            <ion-select [(ngModel)]="especieAnimal" name='especieAnimal' interface="action-sheet" placeholder="Seleccionar" cancelText="Cancelar">
+                                <ion-option value="Cerdos">Cerdos</ion-option>
+                                <ion-option value="Ganado">Ganado</ion-option>
+                                <ion-option value="Otros">Otros</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-10>
+                    <ion-item class="inputs">
+                        <ion-label color="gray" fixed>Peso Exacto.:</ion-label>
+                        <ion-input type="tel" name="pesoExacto" placeholder="Escriba el peso en kilogramos" #txtPesoExacto></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2>
+                    <button ion-button only-icon>
+                        <i class="fas fa-microphone"></i>
+          </button>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-10>
+                    <ion-item class="inputs">
+                        <ion-label color="gray" fixed>Vlr a pagar.:</ion-label>
+                        <ion-input type="tel" [(ngModel)]="valorPagar" name="valorPagar" placeholder="Escriba el valor a pagar" #txtValorPagar (input)="txtValorPagar.value = format(valorPagar)"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2>
+                    <button ion-button only-icon (click)="audioValor()">
+              <i class="fas fa-microphone"></i>
+          </button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-row>
+            <ion-col col-6 col-sm>
+                <button ion-button icon-start block color="color-primary" full>
+                    Guardar &nbsp; <i class="fas fa-save fa-lg"></i> 
+                </button>
+            </ion-col>
+
+            <ion-col col-6 col-sm>
+                <button ion-button icon-start block color="secondary" full>
+                    Guardar e Imprimir &nbsp; <i class="fas fa-piggy-bank fa-lg"></i>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

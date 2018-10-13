@@ -1,0 +1,42 @@
+page-consulta-generica {
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    // .content-loader tr td {
+    //     white-space: nowrap;
+    // }
+    tr td:first-child{
+        width:1%;
+        white-space:nowrap;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f1efef;
+    }
+
+    .blanco{
+        color:#ffffff;
+    }
+
+    .naranja{
+        color:#ffc400;
+    }
+
+    .fecha{
+        color:#e0dddd;
+    }
+  
+    ion-card{
+        border: 1px solid #a9abad;
+    }
+
+
+}

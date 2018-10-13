@@ -1,0 +1,38 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+
+    <ion-list class="margin-container">
+        <ion-item>
+            <h1 ion-text color="primary" class="font-title title-welcome" text-center>{{titulo}}</h1>
+        </ion-item>
+    </ion-list>
+
+    <form novalidate (ngSubmit)="iniciarSesion()">
+        <ion-list>
+            <ion-item>
+                <div padding-bottom>
+                    <img alt="Usuario" class="image-login" src="./assets/imgs/logoapp.png">
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Identificación:</ion-label>
+                <ion-input #txtUsuario type="tel" [(ngModel)]='identificacion' name="identificacion" (keyup.enter)="iniciarSesion()"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Constraseña:</ion-label>
+                <ion-input #txtPass type="password" [(ngModel)]='contrasenia' name="contrasenia" (keyup.enter)="iniciarSesion()"></ion-input>
+            </ion-item>
+
+            <ion-item>
+            </ion-item>
+        </ion-list>
+
+        <div padding>
+            <button ion-button icon-start block color="danger" full> <i class="fas fa-lock"></i> &nbsp;  Ingresar</button>
+            <button ion-button icon-start block color="secondary" full *ngIf="getAuth" (click)="cancelar()" block>Cancelar</button>
+        </div>
+    </form>
+</ion-content>
